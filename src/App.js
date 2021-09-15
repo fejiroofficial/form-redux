@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { submitForm } from "./actions";
 import "./App.css";
 
-function App() {
+function App({ submitForm }) {
   const [name, setName] = useState("");
 
   const inputHandler = (event) => {
