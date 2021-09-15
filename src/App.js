@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { submitForm } from "./actions";
 import "./App.css";
 
-function App() {
+function App({ submitForm, submittedName }) {
   const [name, setName] = useState("");
 
   const inputHandler = (event) => {
@@ -11,8 +11,7 @@ function App() {
   };
 
   const submit = (event) => {
-    event.preventDefault()
-    console.log("input:", name);
+    event.preventDefault();
     // dispatch an action
     submitForm(name);
   };
@@ -28,7 +27,9 @@ function App() {
           />
           <button onClick={submit}>Submit</button>
         </form>
-        <div className="App-display">display the name here!</div>
+        <div className="App-display">{`Your name is ${
+          submittedName ? submittedName : "?"
+        }`}</div>
       </div>
     </div>
   );
@@ -38,4 +39,11 @@ const mapDispatchToProps = {
   submitForm,
 };
 
-export default connect(null, mapDispatchToProps)(App);
+const mapStateToProps = (state) => {
+  const { name } = state;
+  return {
+    submittedName: name,
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

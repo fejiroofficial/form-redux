@@ -1,7 +1,4 @@
-export const submitForm = (payload) => {
-  console.log("Payload:", payload)
-  return {
-      type: "SUBMIT_NAME",
-      payload
-  }
-};
+export const submitForm = (payload) => ({
+  type: "SUBMIT_NAME",
+  payload,
+});
